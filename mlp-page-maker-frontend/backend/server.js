@@ -1,43 +1,43 @@
 const express = require('express');
-const cors = require('cors');
+const method = require('method-override');
 const app = express();
+const port = process.env.PORT || 3000;
+
 // this will alow us to connect to mongodb database
-const mongoose = require('mongoose');
-const db = mongoose.connection;
+const mongoose = require('./db/connection.js');
 
-// Environment Variables
-require('dotenv').config();
-// creating express server
-const port = process.env.PORT || 5000;
+app.set('view engine', 'jsx'); // setting up JSX
+app.engine('jsx', require('express-react-views').createEngine());
 
-const uri = process.env.ATLAS_URI;
-mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true }
-);
-
-// Connect to Mongo
-mongoose.connect(mongoURI, { useNewUrlParser: true },
-    () => console.log('MongoDB connection established:', mongoURI));
-
-// Error / Disconnection
-db.on('error', (err) => console.log(err.message + ' is Mongod not running?'));
-db.on('disconnected', () => console.log('mongo disconnected'));
 
 // middleware
-app.use(cors());
-app.use(express.urlencoded({ extended: false }))// extended: false - does not allow nested objects in query strings
-app.use(express.json())// returns middleware that only parses JSON
+app.set('view engine', 'jsx');
+app.engine('jsx', require('express-react-views').createEngine());
+app.use(express.urlencoded({ extended: true }));
+app.use(method('_method'));
 app.use(express.static('public'));
 
-// Routes
+
+const Vehicles = require('./models/vehicles-schema');
 const vehiclesController = require('./controllers/vehicles.js');
+
+// gets the info to the home page
+app.get('/', (req, res) => {
+    Vehicles.find({})
+        .then(vehicles => {
+            res.render('Index', { vehicles });
+        });
+});
+
+
 app.use('/vehicles', vehiclesController);
 
-// this will catch any route that doesn't exist
-app.get('*', (req, res) => {
-    res.status(404).json('Sorry, page not found');
-})
+mongoose.connection.once('open', () => {
+    console.log('connected to mongo');
+});
 
-// starting server on port
+// listen router
 app.listen(port, () => {
     console.log(`server is running on:${port}`);
 })
+
