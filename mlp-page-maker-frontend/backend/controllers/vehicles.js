@@ -32,5 +32,13 @@ router.get('/edit/:id', (req, res) => {
     });
 });
 
+// update Route
+router.put('/:id', (req, res) => {
+    Vehicle.findByIdAndUpdate({ _id: req.params.id },
+        req.body).then(vehicles => {
+            res.redirect(`/vehicles/${vehicles.id}`);
+        });
+});
+
 
 module.exports = router;
