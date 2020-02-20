@@ -40,5 +40,12 @@ router.put('/:id', (req, res) => {
         });
 });
 
+// delete Route
+router.delete('/:id', (req, res) => {
+    Vehicle.findByIdAndRemove({ _id: req.params.id }).then(() => {
+        res.redirect('/vehicles');
+    });
+});
+
 
 module.exports = router;
