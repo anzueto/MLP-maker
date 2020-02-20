@@ -25,5 +25,12 @@ router.post('/', (req, res) => {
     });
 });
 
+//edit Route
+router.get('/edit/:id', (req, res) => {
+    Vehicle.findOne({ _id: req.param.id }).then(vehicles => {
+        res.render('vehicles/Edit', vehicles);
+    });
+});
+
 
 module.exports = router;
