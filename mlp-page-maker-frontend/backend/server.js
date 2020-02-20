@@ -6,10 +6,6 @@ const port = process.env.PORT || 3000;
 // this will alow us to connect to mongodb database
 const mongoose = require('./db/connection.js');
 
-app.set('view engine', 'jsx'); // setting up JSX
-app.engine('jsx', require('express-react-views').createEngine());
-
-
 // middleware
 app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
