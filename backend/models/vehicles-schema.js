@@ -1,7 +1,8 @@
 const mongoose = require('../db/connection');
+const Schema = mongoose.Schema;
 
 
-const VehicleSchema = new mongoose.Schema({
+const VehicleSchema = new Schema({
     year: { type: Number },
     make: { type: String },
     model: { type: String },
