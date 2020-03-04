@@ -1,39 +1,43 @@
 import React from 'react';
 import './App.scss';
+import Intro from './components/Intro';
+import Ctas from './components/Ctas';
+import Secc1 from './components/Secc1';
+import Secc2 from './components/Secc2';
+import Footer from './components/Footer';
+import Model from './components/Model';
 
 
 class App extends React.Component {
   render() {
     return (
-      <div>
-        <h1 className="title">Bulma</h1>
-        <p className="subtitle">
-          Modern CSS framework based on{' '}
-          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox">
-            Flexbox
-  </a>
-        </p>
 
-        <div className="field">
-          <div className="control">
-            <input className="input" type="text" placeholder="Input" />
+      <div className="columns">
+        <div className="column">
+
+          <Model />
+          <Intro />
+          <Ctas />
+          <Secc1 />
+          <Secc2 />
+
+          <Footer />
+
+          <div className="buttons">
+            <a className="button is-primary">Download</a>
           </div>
         </div>
 
-        <div className="field">
-          <p className="control">
-            <span className="select">
-              <select>
-                <option>Select dropdown</option>
-              </select>
-            </span>
+        <div className="column">
+
+          <h1 className="title">Bulma</h1>
+          <p className="subtitle">
+            Modern CSS framework based on{' '}
+            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox">Flexbox</a>
           </p>
+
         </div>
 
-        <div className="buttons">
-          <a className="button is-primary">Primary</a>
-          <a className="button is-link">Link</a>
-        </div>
       </div>
     );
   }
