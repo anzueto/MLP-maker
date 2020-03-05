@@ -1,39 +1,42 @@
 import React from 'react';
-import '../App.scss'
+import '../App.scss';
+import styled from 'styled-components';
+
+
+const Select = styled.select`
+ width:20%;
+ font-size:18px;
+ margin: 0 10px;
+ min-width:150px;
+`;
+
 
 class Model extends React.Component {
     render() {
         return (
             <>
+
                 <div className="box">
-                    <div class="select">
-                        <select>
-                            <option>Year</option>
-                            <option>2020</option>
-                            <option>2021</option>
-                        </select>
-                    </div>
+                    <Select>
+                        <option>Year</option>
+                        <option>2020</option>
+                        <option>2021</option>
+                    </Select>
 
-                    <div class="select">
-                        <select>
-                            <option>Make</option>
-                            <option>Toyota</option>
-                        </select>
-                    </div>
+                    <Select>
+                        <option>Make</option>
+                        <option>Toyota</option>
+                    </Select>
 
-                    <div class="select">
-                        <select>
-                            <option>Model</option>
-                            <option>Corolla</option>
-                        </select>
-                    </div>
+                    <Select>
+                        <option>Model</option>
+                        <option>Corolla</option>
+                    </Select>
 
-                    <div class="select">
-                        <select>
-                            <option>Template</option>
-                            <option>T3</option>
-                        </select>
-                    </div>
+                    <Select>
+                        <option>Template</option>
+                        <option>T3</option>
+                    </Select>
                 </div>
 
             </>
